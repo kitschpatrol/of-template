@@ -6,11 +6,17 @@
 !.vscode/extensions.json
 
 # Xcode
-xcuserdata/
+/xcuserdata/
+
+# Visual Studio
+/.vs/
+/dll/
+/*.user
 
 # Dependencies
-/openFrameworks
+/openFrameworks/
 
 # Build artifacts
-/obj
-/bin/*.app
+/obj/
+/bin/*
+!/bin/data/

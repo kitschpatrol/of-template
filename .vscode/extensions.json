@@ -1,3 +1,7 @@
 {
-  "recommendations": ["ms-vscode.makefile-tools", "ms-vscode.cpptools"]
+  "recommendations": [
+    "ms-vscode.makefile-tools",
+    "ms-vscode.cpptools",
+    "nefrob.vscode-just-syntax"
+  ]
 }

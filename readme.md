@@ -2,6 +2,8 @@
 
 A template repository for self-contained openFrameworks application projects.
 
+Configured with a VS Code / Make toolchain in mind, but includes some affordances for escalating to a heavier IDE when necessary.
+
 ## Getting started
 
 ### Dependencies
@@ -12,11 +14,34 @@ Beyond the openFrameworks basics like `git` and a compiler, you will need:
 - [`jq`](https://jqlang.org) - JSON processor
 - [`node`](https://nodejs.org) - Version bumping _(optional)_
 
+#### macOS
+
 To install these with [Homebrew](https://brew.sh/) on macOS:
 
 ```sh
 brew install just jq
 ```
+
+#### Windows
+
+Building openFrameworks with Make requires [MSYS2](https://www.msys2.org/). (Use the installer.)
+
+From inside an MSYS2 MINGW64 prompt:
+
+```sh
+pacman -Syu --noconfirm --needed
+pacman -S git clang mingw-w64-x86_64-nodejs mingw-w64-x86_64-toolchain just mingw-w64-x86_64-jq --noconfirm --needed
+```
+
+For ease of calling `just` outside a MSYS2 prompt, you can install the following at the system level with [Scoop](https://scoop.sh/):
+
+```sh
+scoop install just clang-format
+```
+
+(Note that `jid` is a dependency of `jq` and `fzf` is a dependency of `just`.)
+
+#### Git Actions
 
 This repo includes GitHub actions to keep project metadata in sync and to publish source releases. These require a GitHub personal access token credential to be set on the repository.
 

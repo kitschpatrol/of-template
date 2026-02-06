@@ -1,29 +1,18 @@
 # https://just.systems
 
+set windows-shell := ["C:/msys64/msys2_shell.cmd", "-defterm", "-mingw64", "-no-start", "-here", "-shell", "bash", "-c"]
+
 # Fetch and install project dependencies from codemeta.json
-init:
-    #!/bin/bash
-    jq -r '.softwareRequirements[] | "\(.name) \(.codeRepository) \(.version)"' codemeta.json | while read name url ref; do
-      if [ "$name" = "openFrameworks" ]; then
-        target="openFrameworks"
-      else
-        target="openFrameworks/addons/$name"
-      fi
-
-      if [ ! -d "$target" ]; then
-        git init "$target"
-        git -C "$target" remote add origin "$url"
-        git -C "$target" fetch --depth 1 origin "$ref"
-        git -C "$target" checkout FETCH_HEAD
-      fi
+@init:
+    jq -r '.softwareRequirements[] | "\(.name) \(.codeRepository) \(.version)"' codemeta.json | tr -d '\r' | while read name url ref; do \
+      target=$([[ "$name" == "openFrameworks" ]] && echo "openFrameworks" || echo "openFrameworks/addons/$name"); \
+      [ -d "$target" ] || (git init "$target" && git -C "$target" remote add origin "$url" && git -C "$target" fetch --depth 1 origin "$ref" && git -C "$target" checkout FETCH_HEAD); \
     done
-
-    if [ ! -f "openFrameworks/libs/.libs_installed" ]; then
-      openFrameworks/scripts/of.sh update libs
-      touch openFrameworks/libs/.libs_installed
-    fi
-
-    # Copy formatting configs to project root
+    [ -f openFrameworks/libs/.libs_installed ] || ( \
+      case "$(uname -s)" in MING*|MSYS*) openFrameworks/scripts/of.sh update libs msys2 ;; esac; \
+      openFrameworks/scripts/of.sh update libs && \
+      touch openFrameworks/libs/.libs_installed)
+    # Copy config
     { echo "# Copied from ./openFrameworks"; cat openFrameworks/.clang-format; } > .clang-format
     { echo "# Copied from ./openFrameworks"; cat openFrameworks/.editorconfig; } > .editorconfig
 
@@ -56,14 +45,17 @@ clean-all:
     git clean -ffdX
 
 # Generate optional IDE project files for the current platform
-ide: init
-    #!/bin/bash
+@ide: init
     [ -f openFrameworks/projectGenerator/projectGenerator ] || openFrameworks/scripts/of.sh update pg
-    openFrameworks/projectGenerator/projectGenerator .
+    just _ide-{{ os() }}
 
+@_ide-macos:
+    openFrameworks/projectGenerator/projectGenerator .
     # Replace absolute paths with relative paths
-    REPO_ROOT="$(pwd)"
-    find . -type f \( -name "*.make" -o -name "Makefile" -o -name "*.xcconfig" -o -name "*.pbxproj" \) -exec sed -i '' "s|$REPO_ROOT/|./|g" {} +
+    find . -type f \( -name "*.make" -o -name "Makefile" -o -name "*.xcconfig" -o -name "*.pbxproj" \) -exec sed -i '' "s|$(pwd)/|./|g" {} +
+
+@_ide-windows:
+    openFrameworks/projectGenerator/projectGeneratorCmd -p"vs" .
 
 # Format source files using openFrameworks style
 format:
