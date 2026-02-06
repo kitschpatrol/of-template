@@ -5,6 +5,12 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# Xcode
+xcuserdata/
+
+# Dependencies
+/openFrameworks
+
 # Build artifacts
 /obj
-bin/*.app
+/bin/*.app

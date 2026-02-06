@@ -1,0 +1,32 @@
+{
+  "@context": "https://w3id.org/codemeta/3.1",
+  "@type": "SoftwareSourceCode",
+  "name": "of-template",
+  "version": "1.0.0",
+  "description": "A template repository for stand-alone openFrameworks sketches or application project.",
+  "author": {
+    "@type": "Person",
+    "email": "eric@ericmika.com",
+    "name": "Eric Mika",
+    "url": "https://ericmika.com"
+  },
+  "keywords": ["openframeworks"],
+  "url": "https://github.com/kitschpatrol/svelte-tweakpane-ui",
+  "codeRepository": "git+https://github.com/kitschpatrol/of-template.git",
+  "issueTracker": "https://github.com/kitschpatrol/of-template/issues",
+  "license": "http://spdx.org/licenses/MIT",
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareSourceCode",
+      "codeRepository": "https://github.com/openframeworks/openFrameworks.git",
+      "name": "openFrameworks",
+      "version": "aed1697505d913415a7d4d36c37504ec95419278"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "codeRepository": "https://github.com/danomatika/ofxMidi.git",
+      "name": "ofxMidi",
+      "version": "735f00ead8d043d3c9a399196c3abf8795bed827"
+    }
+  ]
+}
