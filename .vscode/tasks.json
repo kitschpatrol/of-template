@@ -1,102 +1,82 @@
 {
+  "version": "2.0.0",
+  "shell": {
+    "task": true
+  },
+  "windows": {
+    "options": {
+      "shell": {
+        "executable": "C:\\msys64\\msys2_shell.cmd",
+        "args": ["-defterm", "-mingw64", "-no-start", "-here", "-shell bash -c"]
+      }
+    }
+  },
+  "problemMatcher": {
+    "owner": "cpp",
+    "fileLocation": ["relative", "${workspaceFolder}"],
+    "pattern": {
+      "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+      "file": 1,
+      "line": 2,
+      "column": 3,
+      "severity": 4,
+      "message": 5
+    }
+  },
 
-	"version": "2.0.0",
-	"shell":{
-		"task": true
-	},
-	"windows" : {
-		"options": {
-			"shell": {
-				"executable": "C:\\msys64\\msys2_shell.cmd",
-				"args": [
-					"-defterm",
-					"-mingw64",
-					"-no-start",
-					"-here",
-					"-shell bash -c"
-				]
-			}
-		}
-	},
-	"problemMatcher": {
-		"owner": "cpp",
-		"fileLocation": ["relative", "${workspaceFolder}"],
-		"pattern": {
-			"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-			"file": 1,
-			"line": 2,
-			"column": 3,
-			"severity": 4,
-			"message": 5
-		}
-	},
+  "group": {
+    "kind": "build"
+  },
 
-	"group": {
-		"kind": "build",
-	},
+  "presentation": {
+    "reveal": "always",
+    "panel": "shared"
+  },
 
-	"presentation": {
-		"reveal": "always",
-		"panel": "shared"
-	},
-
-	"tasks": [
-		{
-			"type": "shell",
-			"label": "Init",
-			"command": "just init"
-		},
-		{
-			"type": "shell",
-			"label": "Build",
-			"command": "just build"
-		},
-		{
-			"type": "shell",
-			"label": "Run",
-			"command": "just run",
-			"windows": {
-				"command": "bin/*.exe"
-			}
-		},
-		{
-			"label": "Build and Run",
-			"dependsOn": ["Build", "Run"],
-			"dependsOrder": "sequence",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
-			"type": "shell",
-			"label": "Build Debug",
-			"command": "just build-debug"
-		},
-		{
-			"type": "shell",
-			"label": "Run Debug",
-			"command": "just run-debug"
-		},
-		{
-			"type": "shell",
-			"label": "Format",
-			"command": "just format"
-		},
-		{
-			"type": "shell",
-			"label": "Clean",
-			"command": "just clean"
-		},
-		{
-			"type": "shell",
-			"label": "Clean Debug",
-			"command": "just clean-debug"
-		},
-		{
-			"type": "shell",
-			"label": "Clean All",
-			"command": "just clean-all"
-		}
-	]
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "Build",
+      "command": "just build"
+    },
+    {
+      "type": "shell",
+      "label": "Run",
+      "command": "just run",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "shell",
+      "label": "Build Debug",
+      "command": "just build-debug"
+    },
+    {
+      "type": "shell",
+      "label": "Run Debug",
+      "command": "just run-debug"
+    },
+    {
+      "type": "shell",
+      "label": "Format",
+      "command": "just format"
+    },
+    {
+      "type": "shell",
+      "label": "Clean",
+      "command": "just clean"
+    },
+    {
+      "type": "shell",
+      "label": "Clean Debug",
+      "command": "just clean-debug"
+    },
+    {
+      "type": "shell",
+      "label": "Clean All",
+      "command": "just clean-all"
+    }
+  ]
 }

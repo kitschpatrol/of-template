@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "name": "of-template",
   "version": "1.0.0",
-  "description": "A template repository for stand-alone openFrameworks sketches or application project.",
+  "description": "A template repository for self-contained openFrameworks application projects.",
   "author": {
     "@type": "Person",
     "email": "eric@ericmika.com",

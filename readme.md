@@ -4,6 +4,8 @@ A template repository for self-contained openFrameworks application projects.
 
 Configured with a VS Code / Make toolchain in mind, but includes some affordances for escalating to a heavier IDE when necessary.
 
+Tested on macOS and Windows.
+
 ## Getting started
 
 ### Dependencies
@@ -12,15 +14,18 @@ Beyond the openFrameworks basics like `git` and a compiler, you will need:
 
 - [`just`](https://just.systems) - task runner
 - [`jq`](https://jqlang.org) - JSON processor
-- [`node`](https://nodejs.org) - Version bumping _(optional)_
+- [`clang-format`](https://jqlang.org) - Code formatter
+- [`node`](https://nodejs.org) - For version bumping script _(optional)_
 
 #### macOS
 
 To install these with [Homebrew](https://brew.sh/) on macOS:
 
 ```sh
-brew install just jq
+brew install just jq clang-format node
 ```
+
+_(Note that there are [better ways](https://github.com/Schniz/fnm) to install Node than Homebrew.)_
 
 #### Windows
 
@@ -33,13 +38,13 @@ pacman -Syu --noconfirm --needed
 pacman -S git clang mingw-w64-x86_64-nodejs mingw-w64-x86_64-toolchain just mingw-w64-x86_64-jq --noconfirm --needed
 ```
 
-For ease of calling `just` outside a MSYS2 prompt, you can install the following at the system level with [Scoop](https://scoop.sh/):
+For ease of calling `just` outside a MSYS2 prompt, you can install it at the system level with [Scoop](https://scoop.sh/):
 
 ```sh
-scoop install just clang-format
+scoop install just
 ```
 
-(Note that `jid` is a dependency of `jq` and `fzf` is a dependency of `just`.)
+Regardless of where you invoke `just`, the scripts will always execute in the MYSYS2, so you don't strictly need to ensure the same dependencies outside MYSYS2.
 
 #### Git Actions
 
@@ -107,7 +112,7 @@ just release     # Bump and tag version (interactive)
 
 ## Defining project metadata
 
-The project's name, version number, description, keywords, and dependencies are all defined in `codemeta.json`, which is based on the [CodeMeta](https://codemeta.github.io/) metadata vocabulary.
+The project's name, version number, description, keywords, and dependencies are all defined in `codemeta.json`, which is based on the [CodeMeta](https://codemeta.github.io/) metadata vocabulary. In this context, it behaves a lot like a `package.json` file in a web project to define specific dependencies, links, etc. This is not exactly a standard practice in C++ projects, but it will have to do in the absence of collective convergence on an approach.
 
 ## Managing addons
 
@@ -157,10 +162,7 @@ It looks like openFraemworks might eventually migrate to [CMake](https://cmake.o
 - [OF-RFC-001: Global Architecture: a layered approach](https://forum.openframeworks.cc/t/of-rfc-001-global-architecture-a-layered-approach/45087)
 - [OF-RFC-002: Standalone Core Discussion](https://forum.openframeworks.cc/t/of-rfc-002-layer-1-of-standalone-core/45089)
 - [libopenframeworks Repository](https://github.com/echa/libopenframeworks)
-- [ofLibs](https://github.com/ofWorks/ofLibs)
 - [Thread: ofLibs as an Apothecary Alternative](https://forum.openframeworks.cc/t/oflibs-apothecary-alternative/45122)
-- [ofWorks](https://ofworks.cc/)
-- [TrussC](https://trussc.org/)
 
 ### CMake
 
@@ -175,3 +177,9 @@ It looks like openFraemworks might eventually migrate to [CMake](https://cmake.o
 - [Cris Mendoza's vcpkg fork](https://github.com/StudioDanielCanogar/openFrameworks/tree/vcpkg)
 - [Thread: vcpkg fork](https://forum.openframeworks.cc/t/of-vcpkg-cmake-fork/45272)
 - [Studio Daniel Canogar vcpkg Branch](https://github.com/StudioDanielCanogar/openFrameworks/tree/vcpkg)
+
+### Forks
+
+- [ofWorks](https://ofworks.cc/)
+- [ofLibs](https://github.com/ofWorks/ofLibs)
+- [TrussC](https://trussc.org/)
