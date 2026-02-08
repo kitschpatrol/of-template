@@ -2,7 +2,7 @@
 
 A template repository for self-contained openFrameworks application projects.
 
-Configured with a VS Code / Make toolchain in mind, but includes some affordances for escalating to a heavier IDE when necessary.
+Configured with a VS Code / Make toolchain in mind, but includes some affordances for quickly escalating to Xcode or Visual Studio when necessary.
 
 Tested on macOS and Windows.
 
@@ -31,26 +31,26 @@ _(Note that there are [better ways](https://github.com/Schniz/fnm) to install No
 
 Building openFrameworks with Make requires [MSYS2](https://www.msys2.org/). (Use the installer.)
 
-From inside an MSYS2 MINGW64 prompt:
+From inside an MSYS2 MINGW64 shell:
 
 ```sh
 pacman -Syu --noconfirm --needed
 pacman -S git clang mingw-w64-x86_64-nodejs mingw-w64-x86_64-toolchain just mingw-w64-x86_64-jq --noconfirm --needed
 ```
 
-For ease of calling `just` outside a MSYS2 prompt, you can install it at the system level with [Scoop](https://scoop.sh/):
+For ease of calling `just` outside a MSYS2 shell, you can install it at the system level with [Scoop](https://scoop.sh/):
 
 ```sh
 scoop install just
 ```
 
-Regardless of where you invoke `just`, the scripts will always execute in the MYSYS2, so you don't strictly need to ensure the same dependencies outside MYSYS2.
+Regardless of where you invoke `just`, the scripts will always execute in the MYSYS2 shell, so you don't any dependencies beyond `just` outside the MYSYS2 context. (Assuming you're not doing any path sharing between shell contexts.)
 
 #### Git Actions
 
-This repo includes GitHub actions to keep project metadata in sync and to publish source releases. These require a GitHub personal access token credential to be set on the repository.
+This repo includes GitHub actions to keep project metadata in sync and to publish source releases on the repository's GitHub page. These require a GitHub personal access token credential to be set on the repository.
 
-This can be done through the GitHub admin panels, or with the [GitHub CLI](https://cli.github.com/):
+This credential can be set the GitHub admin panels, or with the [GitHub CLI](https://cli.github.com/):
 
 ```sh
  gh secret set PERSONAL_ACCESS_TOKEN --app actions --body $GITHUB_PERSONAL_ACCESS_TOKEN

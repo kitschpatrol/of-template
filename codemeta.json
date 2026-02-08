@@ -11,7 +11,7 @@
     "url": "https://ericmika.com"
   },
   "keywords": ["openframeworks"],
-  "url": "https://github.com/kitschpatrol/svelte-tweakpane-ui",
+  "url": "https://github.com/kitschpatrol/of-template",
   "codeRepository": "git+https://github.com/kitschpatrol/of-template.git",
   "issueTracker": "https://github.com/kitschpatrol/of-template/issues",
   "license": "http://spdx.org/licenses/MIT",
