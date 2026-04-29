@@ -16,7 +16,7 @@ Beyond the openFrameworks basics like `git` and a compiler, you will need:
 
 - [`just`](https://just.systems) - task runner
 - [`jq`](https://jqlang.org) - JSON processor
-- [`clang-format`](https://jqlang.org) - Code formatter
+- [`clang-format`](https://clang.llvm.org/docs/ClangFormat.html) - Code formatter
 - [`node`](https://nodejs.org) - For version bumping script _(optional)_
 
 #### macOS
@@ -27,11 +27,11 @@ To install these with [Homebrew](https://brew.sh/) on macOS:
 brew install just jq clang-format node
 ```
 
-_(Note that there are [better ways](https://github.com/Schniz/fnm) to install Node than Homebrew.)_
+_(Note that there are [better ways](https://github.com/Schniz/fnm) to install Node.js than Homebrew.)_
 
 #### Windows
 
-Building openFrameworks with Make requires [MSYS2](https://www.msys2.org/). (Use the installer.)
+Building openFrameworks with Make on Windows requires [MSYS2](https://www.msys2.org/). (Use the installer.)
 
 From inside an MSYS2 MINGW64 shell, install the dependencies:
 
@@ -46,7 +46,7 @@ For ease of calling `just` outside a MSYS2 shell, you can install it at the syst
 scoop install just
 ```
 
-Regardless of where you invoke `just`, the scripts will always execute in the MYSYS2 shell, so you don't any dependencies beyond `just` outside the MYSYS2 context. (Assuming you're not doing any path sharing between shell contexts.)
+Regardless of where you invoke `just`, the scripts will always execute in the MYSYS2 shell, so you don't need any dependencies beyond `just` outside the MYSYS2 context. (Assuming you're not doing any path sharing between shell contexts.)
 
 #### Git Actions
 
@@ -70,17 +70,14 @@ Assuming a POSIX shell:
 
 ```sh
 # Clone the repo
-git clone https://github.com/kitschpatrol/of-template
-
-# Rename it as you like
-mv of-template your-app
-cd your-app
+git clone https://github.com/kitschpatrol/of-template your-app
 
 # Re-init git
+cd your-app
 rm -rf .git
 git init
 
-# Open in vscode...
+# Open in VS Code...
 code .
 ```
 
