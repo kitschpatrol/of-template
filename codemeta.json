@@ -11,6 +11,7 @@
     "url": "https://ericmika.com"
   },
   "keywords": ["openframeworks"],
+  "programmingLanguage": "C++",
   "url": "https://github.com/kitschpatrol/of-template",
   "codeRepository": "git+https://github.com/kitschpatrol/of-template.git",
   "issueTracker": "https://github.com/kitschpatrol/of-template/issues",

@@ -1,8 +1,10 @@
 # of-template
 
-A template repository for self-contained openFrameworks application projects.
+A template repository for self-contained, portable, git-friendly [openFrameworks](https://openframeworks.cc/) application projects.
 
-Configured with a VS Code / Make toolchain in mind, but includes some affordances for quickly escalating to Xcode or Visual Studio when necessary.
+It's configured with a [VS Code](https://code.visualstudio.com/) / [Make](<https://en.wikipedia.org/wiki/Make_(software)>) toolchain in mind, but includes some affordances for quickly escalating to Xcode or Visual Studio when necessary.
+
+This is an alternative to things like the [projectGenerator](https://github.com/openframeworks/projectGenerator) for creating new openFrameworks projects. It moves reponsibility for the openFrameworks dependency from the _system_ to the _project_: Instead of having one copy of openFrameworks with a bunch of application projects inside of it, this approach puts a copy of a specific version of openFrameworks and any addons inside _each_ application project.
 
 Tested on macOS and Windows.
 
@@ -31,7 +33,7 @@ _(Note that there are [better ways](https://github.com/Schniz/fnm) to install No
 
 Building openFrameworks with Make requires [MSYS2](https://www.msys2.org/). (Use the installer.)
 
-From inside an MSYS2 MINGW64 shell:
+From inside an MSYS2 MINGW64 shell, install the dependencies:
 
 ```sh
 pacman -Syu --noconfirm --needed
@@ -58,7 +60,35 @@ This credential can be set the GitHub admin panels, or with the [GitHub CLI](htt
 
 (Or just delete the `.github` folder if you don't want to bother.)
 
-### Bootstrapping
+### Creating a new project
+
+For now, new projects are created by cloning and editing this repo.
+
+#### Create
+
+Assuming a POSIX shell:
+
+```sh
+# Clone the repo
+git clone https://github.com/kitschpatrol/of-template
+
+# Rename it as you like
+mv of-template your-app
+cd your-app
+
+# Re-init git
+rm -rf .git
+git init
+
+# Open in vscode...
+code .
+```
+
+#### Customize
+
+Edit `codemeta.json` to define your applications metadata and dependencies. More details [below](#defining-project-metadata).
+
+#### Initialize
 
 To download openFrameworks, the openFramework library dependencies, and any third-party addons as defined in the `codemeta.json` file into the project, run:
 
@@ -66,13 +96,17 @@ To download openFrameworks, the openFramework library dependencies, and any thir
 just init
 ```
 
-### Building and Running
+This will take a while since it's downloading OF and its libraries.
+
+#### Build and run
 
 To launch a debug build of the application:
 
 ```sh
 just run-debug
 ```
+
+The first compile will also take a while.
 
 ## Tasks
 
@@ -155,7 +189,7 @@ just clean-all init
 
 ## Context
 
-It looks like openFraemworks might eventually migrate to [CMake](https://cmake.org/) or a proper package manager like [vcpkg](https://vcpkg.io/en/). That will be great, but for now, this repository uses Make since this is supported by built-in project generator, which represents the path of least resistance pending progress on some of the prospects below:
+It looks like openFraemworks might eventually migrate to [CMake](https://cmake.org/) or an industrial-strength package manager like [vcpkg](https://vcpkg.io/en/). That will be great, but for now, this repository uses Make since this is supported by built-in project generator, which represents the path of least resistance pending progress on some of the prospects below:
 
 ### Modularization and modernization
 
@@ -183,3 +217,7 @@ It looks like openFraemworks might eventually migrate to [CMake](https://cmake.o
 - [ofWorks](https://ofworks.cc/)
 - [ofLibs](https://github.com/ofWorks/ofLibs)
 - [TrussC](https://trussc.org/)
+
+## License
+
+[MIT](license.txt) © [Eric Mika](https://ericmika.com)
