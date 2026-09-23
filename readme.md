@@ -186,7 +186,7 @@ just clean-all init
 
 ## Context
 
-It looks like openFraemworks might eventually migrate to [CMake](https://cmake.org/) or an industrial-strength package manager like [vcpkg](https://vcpkg.io/en/). That will be great, but for now, this repository uses Make since this is supported by built-in project generator, which represents the path of least resistance pending progress on some of the prospects below:
+It looks like openFrameworks might eventually migrate to [CMake](https://cmake.org/) or an industrial-strength package manager like [vcpkg](https://vcpkg.io/en/). That will be great, but for now, this repository uses Make since this is supported by built-in project generator, which represents the path of least resistance pending progress on some of the prospects below:
 
 ### Modularization and modernization
 
